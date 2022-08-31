@@ -1,0 +1,82 @@
+﻿@using ListOfCalculator.SharedUI.ViewModel
+@using Microsoft.AspNetCore.Components.Forms
+
+<p class="h3">
+    Tip Calculator
+</p>
+<div class="progress" style="    margin-top: 1%;margin-bottom: 1%;">
+    <div class="progress-bar  bg-info" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div class="card">
+    <div class="card-header">
+        Modify the values and click the Calculate button to use!
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">
+            Single Bill Tip Calculator
+        </h5>
+        <p class="card-text">The Tip Calculator calculates tip amount for various percentages of the cost of the service, and also provides a total amount that includes the tip. In the U.S., a tip of 15% of the before tax meal price is typically expected.</p>
+        
+        @if (Error)
+        {
+            <GenericError ErrorMessage="@ErrorMessage"></GenericError>
+        }
+
+
+
+        <EditForm Model=@tipCalculatorViewModel style="margin:2%">
+
+
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Price</label>
+                <div class="col-sm-8 my-component">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <InputNumber  class="form-control" id="TotalPrice" @bind-Value="@tipCalculatorViewModel.TotalPrice" />
+                    <ValidationMessage For="() => tipCalculatorViewModel.TotalPrice" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <br />
+                <div class="col-sm-10">
+                    <input style="float:right" type="submit" class="btn btn-success mt-2" @onclick="CalculateTip">
+                    Calculate<span class="oi oi-bell" style="margin-left:2px" title="person" aria-hidden="true"></span>
+                </input>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+
+
+@if (showTableGrid)
+{
+
+    <table class="table table-bordered mt-2">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="table-info">Tip %</th>
+                <th scope="col" class="table-info">Tip Amount</th>
+                <th scope="col" class="table-info">Total</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in tipCalculatorFromula.Percentage)
+            {
+                var tipcalculator = tipCalculatorViewModel.TipCalculator(item);
+                <tr>
+                    <th scope="row">@item %</th>
+                    <td>$@tipcalculator</td>
+                    <td>$@(String.Format("{0:0.00}", tipcalculator + tipCalculatorViewModel.TipCalculator(item)))</td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+
+}

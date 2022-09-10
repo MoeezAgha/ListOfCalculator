@@ -39,6 +39,22 @@ namespace ListOfCalculator.SharedUI.Componets
         }
 
 
+        public void Calc(string step)
+        {
+            if (2 < step.Length)
+            {
+                int number = Convert.ToInt32(step.Substring(0, 2));
+                tipCalculatorViewModel.TipPercentage = number;
+            }
+            else
+            {
+                tipCalculatorViewModel.TipPercentage = Convert.ToInt32(step);
+            }
+
+        }
+
+
+
 
     }
 }

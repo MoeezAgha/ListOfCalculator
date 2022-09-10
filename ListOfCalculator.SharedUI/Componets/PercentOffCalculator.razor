@@ -1,4 +1,5 @@
-﻿@using ListOfCalculator.SharedUI.ViewModel
+﻿
+@using ListOfCalculator.SharedUI.ViewModel
 @using Microsoft.AspNetCore.Components.Forms
 
 <p class="h3">
@@ -16,48 +17,53 @@
             Single Bill Tip Calculator
         </h5>
         <p class="card-text">The Tip Calculator calculates tip amount for various percentages of the cost of the service, and also provides a total amount that includes the tip. In the U.S., a tip of 15% of the before tax meal price is typically expected.</p>
-        
+
         @if (Error)
         {
             <GenericError ErrorMessage="@ErrorMessage"></GenericError>
         }
 
+        <h2>With original price $@percentOffCalculatorModel.OriginalPrice and @percentOffCalculatorModel.PercentOff% off,</h2>
+        Final price: @percentOffCalculatorModel.FinalPrice
+        Saved amount: @percentOffCalculatorModel.Saved
 
 
-        <EditForm Model=@tipCalculatorViewModel style="margin:2%">
+
+
+        <form Model=@percentOffCalculatorModel style="margin:2%">
 
 
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Price</label>
                 <div class="col-sm-8 my-component">
-                    <DataAnnotationsValidator />
-                    <ValidationSummary />
-                    <InputNumber  class="form-control" id="TotalPrice" @bind-Value="@tipCalculatorViewModel.TotalPrice" />
-                    <ValidationMessage For="() => tipCalculatorViewModel.TotalPrice" />
+               
+               
+              @*      <InputNumber class="form-control" id="TotalPrice" @bind-Value="@percentOffCalculatorModel.OriginalPrice" />
+              *@
                 </div>
             </div>
 
             <div class="form-group row">
                 <br />
-                <div class="col-sm-10">
-                    <input style="float:right" value="Calculate" type="submit" class="btn btn-success mt-2" placeholder="Tip" @onclick="CalculateTip">
+            @*    <div class="col-sm-10">
+                    <input style="float:right" value="Calculate" type="submit" class="btn btn-success mt-2" placeholder="Tip" @onclick="percentOffCalculatorModel.PercOffCalculator">
                     Calculate<span class="oi oi-bell" style="margin-left:2px" title="person" aria-hidden="true"></span>
-                </input>
-                </div>
+                    </input>
+                </div>*@
             </div>
-        </EditForm>
+        </form>
     </div>
 </div>
 
 
 
-@if (showTableGrid)
+@if (showResulDiv)
 {
 
-    <table class="table table-bordered mt-2">
+    @*<table class="table table-bordered mt-2">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" class="table-info">Tip123 %</th>
+                <th scope="col" class="table-info">Tip %</th>
                 <th scope="col" class="table-info">Tip Amount</th>
                 <th scope="col" class="table-info">Total</th>
 
@@ -76,7 +82,7 @@
 
 
         </tbody>
-    </table>
+    </table>*@
 
 
 }

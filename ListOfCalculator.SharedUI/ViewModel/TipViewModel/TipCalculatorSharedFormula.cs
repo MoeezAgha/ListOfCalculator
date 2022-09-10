@@ -1,29 +1,8 @@
-﻿namespace ListOfCalculator.SharedUI.ViewModel
+﻿using ListOfCalculator.SharedUI.ViewModel.TipViewModel;
+
+namespace ListOfCalculator.SharedUI.ViewModel
 {
-    public abstract class TipCalculatorBaseClass
-    {
-
-        public double TotalPrice { get; set; } = 0;
-
-
-
-
-
-    }
-
-    public class TipCalculatorViewModel : TipCalculatorBaseClass
-    {
-
-        public double? TipAmount { get; set; }
-        public double TipCalculator(double percentage)
-        {
-            return (this.TotalPrice * percentage) / 100;
-        }
-
-
-    }
-
-    public class TipCalculatorSharedFormula : TipCalculatorBaseClass
+    public partial class TipCalculatorSharedFormula : TipCalculatorBaseClass
     {
 
         public TipCalculatorSharedFormula()
@@ -65,8 +44,6 @@
 
             return TipPerPersonCal() + (this.TotalPrice / NumberofPeople);
         }
-
-
 
 
 

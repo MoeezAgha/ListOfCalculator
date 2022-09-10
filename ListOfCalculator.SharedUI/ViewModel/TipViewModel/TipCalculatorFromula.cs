@@ -1,4 +1,4 @@
-﻿namespace ListOfCalculator.SharedUI.ViewModel
+﻿namespace ListOfCalculator.SharedUI.ViewModel.TipViewModel
 {
     public class TipCalculatorFromula
     {

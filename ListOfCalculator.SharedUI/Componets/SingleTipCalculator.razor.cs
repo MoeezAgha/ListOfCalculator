@@ -1,4 +1,4 @@
-﻿using ListOfCalculator.SharedUI.ViewModel;
+﻿using ListOfCalculator.SharedUI.ViewModel.TipViewModel;
 using Microsoft.AspNetCore.Components;
 
 namespace ListOfCalculator.SharedUI.Componets
